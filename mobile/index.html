@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>选手列表</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/png" href="common/images/sdl_ico.ico">
+    <link rel="stylesheet" href="../amazeui/css/amazeui.min.css">
+    <link rel="stylesheet" href="../amazeui/css/app.css">
+    <script src="../common/js/base.js"></script>
+    <script src="../common/js/jquery-3.2.1.min.js"></script>
+    <script src="../common/js/mobile_index.js"></script>
+    <script src="../common/js/vue.min.js"></script>
+</head>
+<body >
+ <div id="body">
+     <div id="role_head">
+         <section  style="background-color: white;" data-am-widget="accordion" class="am-accordion am-accordion-default" data-am-accordion='{ "multiple": true }'>
+             <dl class="am-accordion-item am-active">
+                 <dt class="am-accordion-title">
+                     点击此处查看评分标准
+                 </dt>
+                 <dd class="am-accordion-bd am-collapse am-in">
+                     <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+                     <div class="am-accordion-content" v-html="gameInfo.gameRole">
+                        {{ gameInfo.gameRole }}
+                     </div>
+                 </dd>
+             </dl>
+         </section>
+     </div>
+     <div >
+         <div class="am-g" style="margin-top: 10px;" id="player_list" >
+             <div class="am-u-sm-6 am-u-end" class="player-item" v-for="(player,index) in playerList" v-cloak >
+                 <div class="am-thumbnail" v-on:click="showModel(player.gameId,player.playerId,player.playerName)">
+                     <img class="player_lg_img" onerror="this.src='../common/images/user_default.png'" v-bind:data-id="player.playerId" v-bind:src="imgUrl + player.playerImg"/>
+                     <div class="am-thumbnail-caption">
+                         <table style="width: 100%;">
+                             <tr>
+                                 <td colspan="2"><h3>{{player.playerName}}</h3></td>
+
+                             </tr>
+                             <tr>
+                                 <td>{{player.playerDepartment}}</td>
+                                 <td>{{player.playerNum}}号</td>
+                             </tr>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!--Model-->
+     <div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
+         <div class="am-modal-dialog">
+             <div class="am-modal-hd">请对选手<span id="playerName"></span>进行评分</div>
+             <div class="am-modal-bd">
+                 <input type="hidden" id="playerId" />
+                 <table width="100%" id="roleScoreList">
+                     <tr v-for="(roleDetail,index) in roleList">
+                         <td>{{roleDetail.roleName}}（{{roleDetail.roleScore}}分）</td>
+                         <td class="roleScoreDetail">
+                             <input type="number" class="am-modal-prompt-input" v-bind:id="roleDetail.roleId" v-bind:name="['roleScore_'+index]" value="" style="width: 60px;"/>
+                             <input type="hidden" v-bind:name="['roleId_'+index]" v-model="roleDetail.roleId">
+                             <input type="hidden" v-bind:name="['max_'+index]" v-model="roleDetail.roleScore">
+                         </td>
+                     </tr>
+                 </table>
+             </div>
+             <div class="am-modal-footer">
+                 <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                 <span id="btn-confirm" class="am-modal-btn" data-am-modal-confirm>提交</span>
+             </div>
+         </div>
+     </div>
+
+     <div class="am-modal am-modal-alert" tabindex="-1" id="submitAlert">
+         <div class="am-modal-dialog">
+             <div class="am-modal-hd">评分系统</div>
+             <div class="am-modal-bd">
+                 <span id="message"></span>
+             </div>
+             <div class="am-modal-footer">
+                 <span class="am-modal-btn">确定</span>
+             </div>
+         </div>
+     </div>
+
+     <div class="am-modal am-modal-alert" tabindex="-1" id="createJudge">
+         <div class="am-modal-dialog">
+             <div class="am-modal-hd">请输入您的姓名</div>
+             <div class="am-modal-bd">
+                 <input id="judgeName" type="text" class="am-modal-prompt-input" style="width: 100%;"/>
+             </div>
+             <div class="am-modal-footer">
+                 <span class="am-modal-btn" onclick="createJudge()">确定</span>
+             </div>
+         </div>
+     </div>
+ </div>
+<script src="../amazeui/js/amazeui.min.js"></script>
+</body>
+</html>

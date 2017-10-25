@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>赛事管理-史丹利赛事管理系统</title>
+    <link rel="icon" type="image/png" href="common/images/sdl_logo.png">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="common/css/common.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-datetimepicker.min.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="common/js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="common/js/jquery.cookie.js"></script>
+    <script src="common/js/base.js"></script>
+    <script src="common/js/checkuser.js"></script>
+    <script src="common/js/vue.min.js"></script>
+    <script src="common/js/pc_index.js"></script>
+    <script src="bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="common/editor/ckeditor.js"></script>
+    <script src="common/js/json2.js"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="contanier-fluid"  id="body">
+        <div class="row">
+            <nav class="navbar navbar-default navbar-static-top" style="border-color: #ff2626;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_menu" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#" style="padding: 0px; line-height: 50px; margin-right: 15px;">
+                            <img src="common/images/sdl_logo.png" style="width: 50px;height: 50px; display: inline;"/>
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="nav_menu">
+                        <ul class="nav navbar-nav" id="nav">
+                            <li class="active"><a href="index.html">我的比赛</a></li>
+                            <li ><a href="#" @click="editGameInfo({})">创建赛事</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav nav-user">
+                            <li >
+                                <div class="dropdown nav-user-name">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        <span id="navUserName"> &nbsp;</span><span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="#" onclick="changePassword()">修改密码</a></li>
+                                        <li><a href="#" onclick="logout()">退出登录</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="row content-body">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                        <th>比赛主题</th>
+                        <th>主办单位</th>
+                        <th>时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="game in gameList" track-by=“gameId” v-cloak>
+                            <td>{{game.gameName}}</td>
+                            <td>{{game.gameOwner}}</td>
+                            <td>{{game.startDate}}</td>
+                            <td>{{game.gameStatus}}</td>
+                            <td>
+                                <div class="btn btn-sm btn-default" @click="showGameInfo(game.gameId)">查看详情</div>
+                                <div class="btn btn-sm btn-primary" v-if="game.gameActive == 0" @click="editGameInfo(game)">修改</div>
+                                <div class="btn btn-sm btn-warning" v-if="game.gameActive == 0" @click="killGameInfo(game.gameId)">终止</div>
+                                <div class="btn btn-sm btn-primary" v-if="game.gameActive == 0" @click="editPlayer(game.gameId)">维护选手</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--模态框-->
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="changeTip" id="changeTip">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">提醒</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="changeTipsMessage"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--模态框-->
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="editGame" id="editGame">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">编辑比赛</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="gameName" class="col-sm-3 control-label">比赛名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="gameName" placeholder="比赛名称" v-model="gameInfo.gameName">
+                                    <input type="hidden" id="gameId" v-model="gameInfo.gameId">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="gameOwner" class="col-sm-3 control-label">主办单位</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="gameOwner" placeholder="主办单位" v-model="gameInfo.gameOwner">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" class="col-sm-3 control-label">比赛时间</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="startDate" placeholder="比赛时间" v-model="gameInfo.startDate">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="realNameFlag0" class="col-sm-3 control-label">评委实名</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" id="realNameFlag0" name="realNameFlag" v-model="gameInfo.realNameFlag" value="0">启用
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" id="realNameFlag1" name="realNameFlag" v-model="gameInfo.realNameFlag" value="1">不启用
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="changeScoreFlag0" class="col-sm-3 control-label">评分可修改</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" id="changeScoreFlag0" name="changeScoreFlag" v-model="gameInfo.changeScoreFlag" value="0">启用
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" id="changeScoreFlag1" name="changeScoreFlag" v-model="gameInfo.changeScoreFlag" value="1">不启用
+                                    </label>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" class="col-sm-3 control-label">评分规则</label>
+                                <div class="col-sm-8">
+                                    <textarea name="gameRole" id="gameRole" rows="10"  style="width:100%" v-model="gameInfo.gameRole">
+
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate" class="col-sm-3 control-label">选手评分项</label>
+                                <div class="col-sm-8">
+                                    <table width="100%" id="roleList">
+                                        <thead>
+                                            <th>评分项</th>
+                                            <th style="text-align: right;">分值</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="roleDetail_" class="roleDetail" v-for="(roleDetail,index) in roleList" track-by=“roleIndex” v-cloak>
+                                                <td>
+                                                    <div>
+                                                        <input type="hidden" id="roleIndex" v-bind:name="['roleIndex_'+index]" v-model="roleDetail.roleIndex"/>
+                                                        <input type="text"  class="form-control" id="roleName" v-bind:name="['roleName_'+index]" placeholder="输入评分项"  v-model="roleDetail.roleName"/>
+
+                                                    </div>
+                                                </td>
+                                                <td class="form-inline" style="text-align: right;">
+                                                    <input type="number"  class="form-control" id="roleScore" v-bind:name="['roleScore_'+index]" placeholder="输入评分项"  v-model="roleDetail.roleScore"/>
+                                                    <button type="button" class="btn btn-danger btn-sm" id="removeRole" name="removeRole" @click="removeRole(index)">
+                                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr id="roleDetail_0" class="roleDetail" v-if="roleList == null">
+                                                <td>
+                                                    <div>
+                                                        <input type="hidden" id="roleIndex" name="roleIndex_0"/>
+                                                        <input type="text"  class="form-control" id="roleName" name="roleName_0" placeholder="输入评分项" />
+                                                    </div>
+                                                </td>
+                                                <td class="form-inline" style="text-align: right;">
+                                                    <input type="number"  class="form-control" id="roleScore" name="roleScore_0" placeholder="输入评分项"/>
+                                                    <button type="button" class="btn btn-danger btn-sm" id="removeRole" name="removeRole"  onclick="removeRole(0);">
+                                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="new-role" onclick="addNewRole();">
+                                                        创建新项目
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-8">
+                                    <button type="button" class="btn btn-primary" @click="saveGameInfo()">保存</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+</body>
+</html>
