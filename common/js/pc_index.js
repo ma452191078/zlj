@@ -15,7 +15,8 @@ $(document).ready(function() {
         data : {
             gameList : [],
             gameInfo : gameInfo,
-            roleList : []
+            roleList : [],
+            groupList : []
         },
         methods : {
             updateData : function(data) {
@@ -27,6 +28,7 @@ $(document).ready(function() {
             editGameInfo : function (game) {
                 this.gameInfo = game;
                 this.roleList = game.gameRoleInfoList;
+                this.groupList = game.groupInfoList;
 
                 $('#editGame').modal('show');
                 editor.setData(game.gameRole);
@@ -41,6 +43,7 @@ $(document).ready(function() {
                 var startDate = $("#startDate").val();
                 var gameRole = editor.getData();
                 var roleList = [];
+                var groupList = [];
                 var tempIndex = 0;
                 var realNameFlag = $("input:radio[name='realNameFlag']:checked").val();
                 var changeScoreFlag = $("input:radio[name='changeScoreFlag']:checked").val();
@@ -61,6 +64,20 @@ $(document).ready(function() {
                     return;
                 }
 
+                $("#game_gourp_list").find(".group_item").each(
+                    function() {
+                        var groupItem = {};
+                        groupItem["groupIndex"] = $("input[name='groupIndex_"+tempIndex+"']").val();
+                        groupItem["groupName"] = $("input[name='groupName_"+tempIndex+"']").val();
+
+                        if (groupItem["groupName"] === ""){
+                            alert("分组名称不能为空");
+                            return;
+                        }
+                        groupList.push(groupItem);
+                        tempIndex = tempIndex + 1;
+                    }
+                );
 
                 $("#roleList").find(".roleDetail").each(
                     function() {
@@ -85,6 +102,7 @@ $(document).ready(function() {
                 param['startDate'] = startDate;
                 param['gameRole'] = gameRole;
                 param['gameRoleInfoList'] = roleList;
+                param['groupInfoList'] = groupList;
                 param['addBy'] = userId;
                 param['realNameFlag'] = realNameFlag;
                 param['changeScoreFlag'] = changeScoreFlag;
@@ -175,7 +193,9 @@ function initDatePicker(){
     });
 }
 
-//添加新规则
+/**
+ * 添加新规则
+ */
 function addNewRole() {
     var roleCount = $("#roleDetail_0").length;
     var roleDetail = $("#roleDetail_0").clone();
@@ -184,7 +204,10 @@ function addNewRole() {
     updateNewRoleIndex();
 }
 
-//移除一个规则
+/**
+ * 移除一个规则
+ * @param tempIndex
+ */
 function removeRole(tempIndex)
 {
     if(tempIndex > 0){
@@ -193,7 +216,9 @@ function removeRole(tempIndex)
     }
 }
 
-//修改新增规则的序号
+/**
+ * 修改新增规则的序号
+ */
 function updateNewRoleIndex() {
     var tempIndex = 0;
     var roleList = $("#roleList").find(".roleDetail");
@@ -223,6 +248,68 @@ function updateNewRoleIndex() {
             tempIndex = tempIndex + 1;
         }
     );
+}
+
+/**
+ * 添加一个分组
+ */
+function addNewGroup() {
+    var groupCount = $("#group_item_0").length;
+    var groupDetail = $("#group_item_0").clone();
+    var addButton = $("#addGroupButton").clone();
+
+    $("#game_group_list").append(groupDetail);
+    $("#addGroupButton").remove();
+    $("#game_group_list").append(addButton);
+    updateNewGroupIndex();
+
+}
+
+/**
+ * 修改新增项目的序号
+ */
+function updateNewGroupIndex() {
+    var tempIndex = 0;
+    var roleList = $("#game_group_list").find(".group_item");
+    roleList.each(
+        function() {
+            $(this).attr("id","group_item_"+tempIndex);
+            if (tempIndex > 0){
+                $(this).find("#removeGroup").attr("onclick",
+                    "removeGroup(" + tempIndex + ");");
+                $(this).find("#removeGroup").css("display", "");
+            }
+
+            // 更正表单name
+            var paramArray = new Array("groupIndex","groupName");
+            for ( var i in paramArray) {
+                var param = paramArray[i];
+                $(this).find("#" + param).attr(
+                    "name",
+                    param + "_" + tempIndex);
+
+                if (param === "groupIndex"){
+                    $(this).find("#" + param).attr(
+                        "value",
+                        tempIndex);
+                }
+            }
+
+            tempIndex = tempIndex + 1;
+        }
+    );
+}
+
+/**
+ * 移除一个分组
+ * @param tempIndex
+ */
+function removeGroup(tempIndex)
+{
+    if(tempIndex > 0){
+        $("#group_item_" + tempIndex).remove();
+        updateNewGroupIndex();
+    }
 }
 
 // 检查用户权限

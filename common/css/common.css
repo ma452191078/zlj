@@ -71,3 +71,28 @@ body {
     border: dashed 1px #3b3b3b;
     color: #3b3b3b;
 }
+
+.group_item{
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: solid 1px #949494;
+}
+
+.group_item .item-input{
+    width: 100px;
+    border: 0px;
+}
+
+.btn-remove-group{
+    background-color: transparent;
+    color: #737772;
+    border: 0;
+}
+
+.btn-remove-group:hover{
+    background-color: #bfc3be;
+    color: #474b47;
+    border: 0px;
+}

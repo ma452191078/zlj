@@ -18,7 +18,7 @@
     <script src="bootstrap/js/bootstrap-datetimepicker.min.js"></script>
     <script src="common/js/jquery.cookie.js"></script>
     <script src="common/js/base.js"></script>
-    <script src="common/js/checkuser.js"></script>
+    <!--<script src="common/js/checkuser.js"></script>-->
     <script src="common/js/vue.min.js"></script>
     <script src="common/js/pc_index.js"></script>
     <script src="bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -143,13 +143,38 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="startDate" class="col-sm-3 control-label">比赛分组</label>
+                                <div class="col-sm-8">
+                                    <div class="game_gourp_list" id="game_group_list" style="float: left;">
+                                        <div class="group_item form-inline" id="group_item_" name="group_item"  v-for="(groupItem,index) in groupList" track-by=“groupIndex” v-cloak >
+                                            <input type="hidden" id="groupIndex" v-bind:name="['groupIndex_'+index]" v-model="groupItem.groupIndex"/>
+                                            <input type="text"  class="form-control item-input" id="groupName" v-bind:name="['groupName_'+index]" v-model="groupItem.groupName"/>
+                                            <button type="button" class="btn btn-sm btn-remove-group" id="removeGroup" name="removeGroup"  @click="removeGroup(index);" style="display: none;">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="group_item form-inline" id="group_item_0" name="group_item">
+                                            <input type="hidden" id="groupIndex" name="groupIndex"/>
+                                            <input type="text"  class="form-control item-input" id="groupName" name="groupName" value="默认分组"/>
+                                            <button type="button" class="btn btn-sm btn-remove-group" id="removeGroup" name="removeGroup"  onclick="removeGroup(0);" style="display: none;">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="new-role" onclick="addNewGroup();"  id="addGroupButton" style="float: left; padding: 0px 5px;">
+                                            添加分组
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="realNameFlag0" class="col-sm-3 control-label">评委实名</label>
                                 <div class="col-sm-8">
                                     <label class="radio-inline">
                                         <input type="radio" id="realNameFlag0" name="realNameFlag" v-model="gameInfo.realNameFlag" value="0">启用
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" id="realNameFlag1" name="realNameFlag" v-model="gameInfo.realNameFlag" value="1">不启用
+                                        <input type="radio" id="realNameFlag1" name="realNameFlag" v-model="gameInfo.realNameFlag" value="1" checked>不启用
                                     </label>
                                 </div>
                             </div>
@@ -160,7 +185,7 @@
                                         <input type="radio" id="changeScoreFlag0" name="changeScoreFlag" v-model="gameInfo.changeScoreFlag" value="0">启用
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" id="changeScoreFlag1" name="changeScoreFlag" v-model="gameInfo.changeScoreFlag" value="1">不启用
+                                        <input type="radio" id="changeScoreFlag1" name="changeScoreFlag" v-model="gameInfo.changeScoreFlag" value="1" checked>不启用
                                     </label>
 
                                 </div>
