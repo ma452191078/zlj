@@ -4,6 +4,7 @@ var vm = null;
 // 初始化加载vue
 $(document).ready(function() {
     initLocalStorage();
+    getGroupList();
     getPlayerList();
     vm = new Vue({
         el : '#body',
@@ -12,13 +13,17 @@ $(document).ready(function() {
             playerList : [],
             imgUrl : imgUrl,
             roleList : [],
-            scoreList : []
+            scoreList : [],
+            groupList : []
         },
         methods : {
             updateData : function(data) {
                 this.playerList = data.playerList;
                 this.gameInfo = data.gameInfo;
                 this.roleList = data.gameInfo.gameRoleInfoList;
+            },
+            updateGroup : function (data) {
+                this.groupList = data.result;
             },
             updateScoreList : function (data) {
                 this.scoreList = data;
@@ -27,7 +32,33 @@ $(document).ready(function() {
     });
 });
 
-// 获取参赛选手列表
+/**
+ * 获取比赛分组列表
+ */
+function getGroupList() {
+    var parameter = {
+        gameId : getUrlParam('gameId')
+    };
+
+    var url = path + "/group/getGroupInfoList";
+    $.ajax({
+        data : parameter,
+        url : url,
+        type : 'POST',
+        dataType : 'JSON',
+        timeout : 10000,
+        success : function(data) {
+            vm.updateGroup(data);
+        },
+        error : function(data) {
+
+        }
+    });
+}
+
+/**
+ * 获取参赛选手列表
+ */
 function getPlayerList() {
     var parameter = {
         gameId : getUrlParam('gameId')
@@ -52,7 +83,11 @@ function getPlayerList() {
     });
 }
 
-// 提交得分
+/**
+ * 提交得分
+ * @param gameId
+ * @param playerId
+ */
 function onSumbitScore(gameId, playerId) {
     var parameter = {};
     parameter["scoreValue"] = 0.00;
