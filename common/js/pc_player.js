@@ -13,12 +13,14 @@ $(document).ready(function() {
         data : {
             gameInfo : {},
             playerList : [],
-            imgUrl : imgUrl
+            imgUrl : imgUrl,
+            groupList : []
         },
         methods : {
             updateData : function(data) {
                 this.gameInfo = data.gameInfo;
                 this.playerList = data.playerList;
+                this.groupList = data.gameInfo.groupInfoList;
             },
             addNewPlayer : function (player) {
                 this.playerList.push(player);
@@ -28,12 +30,16 @@ $(document).ready(function() {
                 var playerDepartment = $('#playerDepartment').val();
                 var playerNum = $('#playerNum').val();
                 var playerImg = $('#playerImg').val();
+                var playerGroup = $('#playerGroup').val();
+                var groupName = $('#playerGroup').find("option:selected").text();
                 var param = {};
                 param["gameId"] = gameId;
                 param['playerName'] = playerName;
                 param['playerDepartment'] = playerDepartment;
                 param['playerNum'] = playerNum;
                 param['playerImg'] = playerImg;
+                param['groupId'] = playerGroup;
+                param['groupName'] = groupName;
                 var url = path + '/player/addPlayerInfo';
                 $.ajax({
                     data : param,

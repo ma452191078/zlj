@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,6 +80,9 @@
                                 <td colspan="2"><h4>{{player.playerName}}</h4></td>
                             </tr>
                             <tr>
+                                <td colspan="2"><p>分组：{{player.groupName}}</p></td>
+                            </tr>
+                            <tr>
                                 <td width="70%"><p>{{player.playerDepartment}}</p></td>
                                 <td><p>{{player.playerNum}}号</p></td>
                             </tr>
@@ -108,6 +111,16 @@
                                 <input type="text" class="form-control" id="playerName" placeholder="选手姓名">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="playerGroup" class="col-sm-2 control-label">选手分组</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="playerGroup" name="playerGroup">
+                                    <option v-for="(groupItem,index) in groupList" track-by=“groupIndex” v-bind:value="groupItem.groupId" v-cloak >{{groupItem.groupName}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <label for="playerDepartment" class="col-sm-2 control-label">选手单位</label>
                             <div class="col-sm-10">

@@ -64,7 +64,8 @@ $(document).ready(function() {
                     return;
                 }
 
-                $("#game_gourp_list").find(".group_item").each(
+                tempIndex = 0;
+                $("#game_group_list").find(".group_item").each(
                     function() {
                         var groupItem = {};
                         groupItem["groupIndex"] = $("input[name='groupIndex_"+tempIndex+"']").val();
@@ -79,6 +80,7 @@ $(document).ready(function() {
                     }
                 );
 
+                tempIndex = 0;
                 $("#roleList").find(".roleDetail").each(
                     function() {
                         var roleDetail = {};

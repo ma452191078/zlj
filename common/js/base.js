@@ -2,15 +2,15 @@
  * Created by majingyuan on 2017/5/29.
  */
 // 正式系统
- var basePath = 'http://weixin.shidanli.cn:8081';
+//  var basePath = 'http://weixin.shidanli.cn:8081';
 
 //测试系统
-// var basePath = 'http://localhost:8088';
+var basePath = 'http://localhost:8088';
 
-var path = basePath + '/scoremanager';
-var imgUrl = basePath + '/scoremanager_ui';
+var path = basePath + '/qualityprize';
+var imgUrl = basePath + '/zlj';
 var qrUrl = imgUrl + '/mobile/index.html?gameId=';
-var loginUrl = imgUrl + "/login.html";
+var loginUrl = "http://localhost:63343/zlj" + "/login.html";
 //获取url中的参数
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象

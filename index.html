@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
     <script src="bootstrap/js/bootstrap-datetimepicker.min.js"></script>
     <script src="common/js/jquery.cookie.js"></script>
     <script src="common/js/base.js"></script>
-    <!--<script src="common/js/checkuser.js"></script>-->
+    <script src="common/js/checkuser.js"></script>
     <script src="common/js/vue.min.js"></script>
     <script src="common/js/pc_index.js"></script>
     <script src="bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -153,7 +153,7 @@
                                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             </button>
                                         </div>
-                                        <div class="group_item form-inline" id="group_item_0" name="group_item">
+                                        <div class="group_item form-inline" id="group_item_0" name="group_item" v-if="groupList == null">
                                             <input type="hidden" id="groupIndex" name="groupIndex"/>
                                             <input type="text"  class="form-control item-input" id="groupName" name="groupName" value="默认分组"/>
                                             <button type="button" class="btn btn-sm btn-remove-group" id="removeGroup" name="removeGroup"  onclick="removeGroup(0);" style="display: none;">
