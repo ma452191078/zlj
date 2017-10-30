@@ -25,6 +25,11 @@ body {
     background-color: white;
 }
 
+.content-body-result{
+    padding: 10px 30px;
+    background-color: white;
+}
+
 .content-body form{
     margin-top: 50px;
     margin-bottom:50px;
@@ -95,4 +100,9 @@ body {
     background-color: #bfc3be;
     color: #474b47;
     border: 0px;
+}
+
+.result-playerList{
+    margin-bottom:15px;
+    border-right: 2px dashed rgb(220, 220, 220);
 }
