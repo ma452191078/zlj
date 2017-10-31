@@ -11,15 +11,19 @@ $(document).ready(function() {
         el : '#body',
         data : {
             playerResult:[],
-            departmentResult:[]
+            departmentResult:[],
+            gameInfo:{}
         },
         methods : {
             updateData: function (data) {
                 this.playerResult = data.playerResult;
                 this.departmentResult = data.departmentResult;
+                this.gameInfo = data.gameInfo;
             }
         }
     });
+
+    var t1 = window.setInterval(getGameResult,1000);
 });
 
 
@@ -39,7 +43,6 @@ function getGameResult() {
             vm.updateData(data);
         },
         error : function() {
-            alert("发生错误，稍后请重新刷新!");
         }
     });
 }

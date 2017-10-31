@@ -25,6 +25,9 @@ $(document).ready(function() {
             showGameInfo : function (gameId) {
                 window.location.href="game.html?gameId="+gameId;
             },
+            showResult : function (gameId) {
+                window.open("results.html?gameId=" + gameId);
+            },
             editGameInfo : function (game) {
                 this.gameInfo = game;
                 this.roleList = game.gameRoleInfoList;

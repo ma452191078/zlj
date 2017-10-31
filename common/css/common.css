@@ -104,5 +104,28 @@ body {
 
 .result-playerList{
     margin-bottom:15px;
-    border-right: 2px dashed rgb(220, 220, 220);
+    /*border-right: 2px dashed rgb(220, 220, 220);*/
+}
+
+.result-playerList-rank{
+    width: 50px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 30px;
+}
+
+.result-department-td{
+    height: 30px;
+    line-height: 30px;
+}
+
+.result-department-rank{
+    margin: 0px 10px;
+    font-size: 30px;
+}
+
+.result-department-name{
+    margin:0px 10px;
+    font-size: 20px;
 }

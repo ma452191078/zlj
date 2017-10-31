@@ -10,7 +10,7 @@ var basePath = 'http://localhost:8088';
 var path = basePath + '/qualityprize';
 var imgUrl = basePath + '/zlj';
 var qrUrl = imgUrl + '/mobile/index.html?gameId=';
-var loginUrl = "http://localhost:63343/zlj" + "/login.html";
+var loginUrl = "http://localhost:63342/zlj" + "/login.html";
 //获取url中的参数
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象

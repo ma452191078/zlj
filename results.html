@@ -31,23 +31,24 @@
     <div class="col-sm-12" id="body" >
         <div class="row content-body-result">
             <div class="page-header col-sm-12">
-                <h2> 总裁质量奖评选</h2>
+                <h2> {{gameInfo.gameName}}</h2>
             </div>
         </div>
         <div class="row content-body-result" >
             <div class="col-sm-8 result-playerList" id="playerList">
                 <table class="table" width="100%">
                     <thead>
+                        <th>排名</th>
                         <th>样品得分</th>
                     </thead>
                     <tbody>
                         <tr v-for="(playerInfo,index) in playerResult" v-cloak="">
-                            <td>
-                                {{index}}
+                            <td class="result-playerList-rank">
+                                {{playerInfo.playerRanking}}
                             </td>
                             <td>
                                 <div class="progress progress-result">
-                                    <div class="progress-bar progress-bar-result" role="progressbar" v-bind:aria-valuenow="playerInfo.playerAverage" v-bind:style="{width: playerInfo.playerAverage}" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-result" role="progressbar" v-bind:aria-valuenow="playerInfo.playerAverage" v-bind:style="{ width: playerInfo.playerAverage + '%'}" aria-valuemin="0" aria-valuemax="100">
                                         <span>{{playerInfo.playerName}}</span><span>{{playerInfo.playerAverage}}分</span>
                                     </div>
                                 </div>
@@ -59,10 +60,10 @@
             <div class="col-sm-4" id="departmentList">
                 <div class="panel panel-danger">
                     <div class="panel-heading"> 公司排名 </div>
-                    <table class="table" style="font-size: 1.3em;">
+                    <table class="table">
                         <tr v-for="(departmentInfo, index) in departmentResult" v-cloak>
-                            <td style="height: 30px; line-height: 30px;">
-                                <span style="margin:0 10px;"><strong>{{index}}</strong></span><span>{{departmentInfo.playerDepartment}}</span><span>{{departmentInfo.playerAverage}}</span>
+                            <td class="result-department-td">
+                                <span class="result-department-rank"><strong>{{departmentInfo.playerRanking}}</strong></span><span class="result-department-name">{{departmentInfo.playerDepartment}}</span><span class="result-department-score">{{departmentInfo.playerAverage}}</span>
                             </td>
                         </tr>
                     </table>

@@ -127,3 +127,6 @@ function showQr() {
     $('#qrModal').modal('show');
 }
 
+function showResult() {
+    window.open("results.html?gameId=" + getUrlParam("gameId")) ;
+}
