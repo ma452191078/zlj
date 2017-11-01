@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>创建比赛-史丹利赛事管理系统</title>
+    <link rel="icon" type="image/png" href="common/images/sdl_ico.ico">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="common/css/common.css">
+    <link rel="stylesheet" href="common/css/results.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="common/js/jquery-3.2.1.min.js"></script>
+    <script src="common/js/jquery.qrcode.min.js" type="text/javascript"></script>
+    <script src="common/js/jquery.cookie.js"></script>
+    <script src="common/js/vue.min.js"></script>
+    <script src="common/js/base.js"></script>
+    <!--<script src="common/js/checkuser.js"></script>-->
+    <script src="common/js/pc_department.js"></script>
+</head>
+<body>
+<div class="contanier-fluid">
+    <div class="col-sm-12" id="body" >
+        <div class="row content-body-result">
+            <div class="page-header col-sm-12">
+                <h2>最终成绩</h2>
+            </div>
+        </div>
+        <div class="row content-body-result" >
+            <div class="col-sm-12 result-playerList" id="playerList">
+                <table class="table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="text-center">序号</th>
+                            <th rowspan="2" class="text-center">生产单位</th>
+                            <th rowspan="2" class="text-center">生产工艺</th>
+                            <th colspan="3" class="text-center">样品得分</th>
+                            <th rowspan="2" class="text-center">市场大比 武得分</th>
+                            <th rowspan="2" class="text-center">厂内产品 考评得分</th>
+                            <th rowspan="2" class="text-center">市场产品 考评得分</th>
+                            <th rowspan="2" class="text-center">销售市场满意度测评得分</th>
+                            <th rowspan="2" class="text-center">总裁质量 奖得分</th>
+                            <th rowspan="2" class="text-center">综合排名</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center">外观质 量得分</th>
+                            <th class="text-center">养分含 量扣分</th>
+                            <th class="text-center">合计</th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="(departmentInfo, index) in departmentInfoList" v-cloak="">
+                        <tr v-for="(groupInfo, indexGroup) in groupInfoList" v-if="indexGroup == 0">
+                            <td rowspan="2">
+                                {{index + 1}}
+                            </td>
+                            <td rowspan="2">
+                                {{departmentInfo.departmentName}}
+                            </td>
+                            <td class="">
+                                {{groupInfo.groupName}}
+                            </td>
+                            <td class="">
+
+                            </td>
+                            <td>
+                                <input class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                            </td>
+                            <td class="">
+                                30
+                            </td>
+                            <td class="" rowspan="2">
+                                <input class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                            </td>
+                            <td class="" rowspan="2">
+                                <input class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                            </td>
+                            <td class="" rowspan="2">
+                                <input class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                            </td>
+                            <td class="" rowspan="2">
+                                <input class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                            </td>
+                            <td class="" rowspan="2">
+                            </td>
+                            <td class="" rowspan="2">
+                            </td>
+                        </tr>
+                        <tr v-for="(groupInfo, indexGroup) in groupInfoList" v-if="indexGroup > 0">
+                            <td class="">
+                                {{groupInfo.groupName}}
+                            </td>
+                            <td class="">
+                            </td>
+                            <td class="">
+                                <input class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                            </td>
+                            <td class="">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@
 // });
 
 function userLogin() {
-    var host = "http://" + window.location.host + "/scoremanager_ui/index.html";
+    var host = "http://" + window.location.host + projectName + "/index.html";
     // 拼装登录参数
     var url = path + "/login/userLogin";
     var param = {};
@@ -24,7 +24,7 @@ function userLogin() {
         dataType : 'JSON',
         timeout : 10000,
         success : function(data) {
-            if (data.errCode == "1"){
+            if (data.errCode === "1"){
 
                 $.cookie('userName', data.userName, { expires: 1, path: '/' });
                 $.cookie('userId', data.userId, { expires: 1, path: '/' });

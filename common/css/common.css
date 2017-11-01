@@ -129,3 +129,8 @@ body {
     margin:0px 10px;
     font-size: 20px;
 }
+
+.department-score-input{
+    width: 100%;
+    min-width: 100px;
+}

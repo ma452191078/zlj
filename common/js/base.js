@@ -6,11 +6,11 @@
 
 //测试系统
 var basePath = 'http://localhost:8088';
-
-var path = basePath + '/qualityprize';
-var imgUrl = basePath + '/zlj';
+var projectName = '/zlj'
+var path = basePath + projectName;
+var imgUrl = basePath + projectName;
 var qrUrl = imgUrl + '/mobile/index.html?gameId=';
-var loginUrl = "http://localhost:63342/zlj" + "/login.html";
+var loginUrl = "http://" + window.location.host + projectName + "/login.html";
 //获取url中的参数
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
