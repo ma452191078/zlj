@@ -73,7 +73,11 @@ $(document).ready(function() {
                         var groupItem = {};
                         groupItem["groupIndex"] = $("input[name='groupIndex_"+tempIndex+"']").val();
                         groupItem["groupName"] = $("input[name='groupName_"+tempIndex+"']").val();
-
+                        if ($("input[name='scoreFlag_"+tempIndex+"']").attr('checked')){
+                            roleDetail["scoreFlag_"] = '1';
+                        }else {
+                            roleDetail["scoreFlag_"] = '0';
+                        }
                         if (groupItem["groupName"] === ""){
                             alert("分组名称不能为空");
                             return;
@@ -286,7 +290,7 @@ function updateNewGroupIndex() {
             }
 
             // 更正表单name
-            var paramArray = new Array("groupIndex","groupName");
+            var paramArray = new Array("groupIndex","groupName","scoreFlag");
             for ( var i in paramArray) {
                 var param = paramArray[i];
                 $(this).find("#" + param).attr(

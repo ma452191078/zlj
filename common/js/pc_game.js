@@ -130,3 +130,7 @@ function showQr() {
 function showResult() {
     window.open("results.html?gameId=" + getUrlParam("gameId")) ;
 }
+
+function showDepartment() {
+    window.open("department.html?gameId=" + getUrlParam("gameId")) ;
+}

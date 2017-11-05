@@ -150,13 +150,18 @@
                                         <div class="group_item form-inline" id="group_item_" name="group_item"  v-for="(groupItem,index) in groupList" track-by=“groupIndex” v-cloak >
                                             <input type="hidden" id="groupIndex" v-bind:name="['groupIndex_'+index]" v-model="groupItem.groupIndex"/>
                                             <input type="text"  class="form-control item-input" id="groupName" v-bind:name="['groupName_'+index]" v-model="groupItem.groupName"/>
-                                            <button type="button" class="btn btn-sm btn-remove-group" id="removeGroup" name="removeGroup"  @click="removeGroup(index);" style="display: none;">
+                                            <div class="checkbox-inline">
+                                                <label><input type="checkbox" v-bind:name="'scoreFlag_'+index"> 计分项</label>
+                                            </div>
+
+                                            <button type="button" class="btn btn-sm btn-remove-group" id="removeGroup" name="removeGroup"  @click="removeGroup(index);" style="display: none;" v-if="index>0">
                                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             </button>
                                         </div>
                                         <div class="group_item form-inline" id="group_item_0" name="group_item" v-if="groupList == null">
                                             <input type="hidden" id="groupIndex" name="groupIndex"/>
                                             <input type="text"  class="form-control item-input" id="groupName" name="groupName" value="默认分组"/>
+                                            <label><input type="checkbox" name="scoreFlag"> 计分项</label>
                                             <button type="button" class="btn btn-sm btn-remove-group" id="removeGroup" name="removeGroup"  onclick="removeGroup(0);" style="display: none;">
                                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             </button>

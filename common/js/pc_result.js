@@ -12,6 +12,7 @@ $(document).ready(function() {
         data : {
             playerResult:[],
             departmentResult:[],
+            groupList:[],
             gameInfo:{}
         },
         methods : {
@@ -19,6 +20,7 @@ $(document).ready(function() {
                 this.playerResult = data.playerResult;
                 this.departmentResult = data.departmentResult;
                 this.gameInfo = data.gameInfo;
+                this.groupList = data.groupList;
             }
         }
     });

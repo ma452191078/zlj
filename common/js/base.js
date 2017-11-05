@@ -6,8 +6,9 @@
 
 //测试系统
 var basePath = 'http://localhost:8088';
+var actionName = "/qualityprize"
 var projectName = '/zlj'
-var path = basePath + projectName;
+var path = basePath + actionName;
 var imgUrl = basePath + projectName;
 var qrUrl = imgUrl + '/mobile/index.html?gameId=';
 var loginUrl = "http://" + window.location.host + projectName + "/login.html";
