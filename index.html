@@ -151,7 +151,7 @@
                                             <input type="hidden" id="groupIndex" v-bind:name="['groupIndex_'+index]" v-model="groupItem.groupIndex"/>
                                             <input type="text"  class="form-control item-input" id="groupName" v-bind:name="['groupName_'+index]" v-model="groupItem.groupName"/>
                                             <div class="checkbox-inline">
-                                                <label><input type="checkbox" v-bind:name="'scoreFlag_'+index"> 计分项</label>
+                                                <label><input type="checkbox" v-bind:name="'scoreFlag_'+index" v-model="groupItem.scoreFlag"> 计分项</label>
                                             </div>
 
                                             <button type="button" class="btn btn-sm btn-remove-group" id="removeGroup" name="removeGroup"  @click="removeGroup(index);" style="display: none;" v-if="index>0">

@@ -3,6 +3,7 @@
  */
 
 var vm = null;
+var gameId = getUrlParam("gameId");
 // 初始化加载vue
 $(document).ready(function() {
 
@@ -31,7 +32,7 @@ $(document).ready(function() {
 
 // 获取比赛
 function getGameResult() {
-    gameId = getUrlParam("gameId");
+
     var parameter = {};
     parameter["gameId"] = gameId;
     var url = path + "/player/getPlayerScoreListFroResult";
@@ -49,3 +50,6 @@ function getGameResult() {
     });
 }
 
+function showFinalResult() {
+    window.location.href = "finalresults.html?gameId="+gameId;
+}

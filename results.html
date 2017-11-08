@@ -31,7 +31,10 @@
         <div class="col-sm-12" id="body" v-cloak>
             <div class="row content-body-result">
                 <div class="page-header col-sm-12">
-                    <h2> {{gameInfo.gameName}}</h2>
+                    <div class="form-inline">
+                        <h2 style="float: left;"> {{gameInfo.gameName}}</h2>
+                        <button class="btn btn-link" onclick="showFinalResult()"> <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> 最终成绩</button>
+                    </div>
                 </div>
             </div>
             <div class="row content-body-result" >

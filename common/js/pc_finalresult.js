@@ -56,7 +56,7 @@ $(document).ready(function() {
                     timeout : 10000,
                     contentType: 'application/json;charset=utf-8',
                     success : function(data) {
-                        alert(data.errMsg);
+
                     },
                     error : function() {
                     }
@@ -73,7 +73,7 @@ function getDepartmentList() {
     gameId = getUrlParam("gameId");
     var parameter = {};
     parameter["gameId"] = gameId;
-    var url = path + "/department/getDepartmentList";
+    var url = path + "/department/getFinalResult";
     $.ajax({
         data : parameter,
         url : url,

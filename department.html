@@ -33,7 +33,7 @@
     <div class="col-sm-12" id="body" >
         <div class="row content-body-result">
             <div class="page-header col-sm-12">
-                <h2>最终成绩</h2>
+                <h2>比赛得分录入</h2>
                 <button class="btn" @click="saveData()">保存</button>
             </div>
         </div>
@@ -59,7 +59,7 @@
                             <th class="text-center">合计</th>
                         </tr>
                     </thead>
-                    <tbody v-bind:id="['departmentInfo_'+index]" class="departmentInfo" v-for="(departmentInfo, index) in departmentInfoList" v-cloak>
+                    <tbody v-bind:id="['departmentInfo_'+index]" class="departmentInfo" v-for="(departmentInfo, index) in departmentInfoList" v-if="departmentScoreInfoList.length == 0" v-cloak>
                         <tr  v-bind:id="['groupInfo_'+indexGroup]" name="groupInfo" v-for="(groupInfo, indexGroup) in groupInfoList" v-if="indexGroup == 0">
                             <td rowspan="2">
                                 {{index + 1}}
@@ -75,22 +75,22 @@
 
                             </td>
                             <td>
-                                <input v-bind:id="['score2_'+index+'_'+indexGroup]" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                                <input v-bind:id="['score2_'+index+'_'+indexGroup]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
                             </td>
                             <td>
 
                             </td>
                             <td rowspan="2">
-                                <input v-bind:id="['score2_'+index]" v-bind:name="['score2_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                                <input v-bind:id="['score2_'+index]" v-bind:name="['score2_'+index]" class="department-score-input"  type="number" step="0.01" placeholder="输入得分" value="0" />
                             </td>
                             <td rowspan="2">
-                                <input v-bind:id="['score3_'+index]" v-bind:name="['score3_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                                <input v-bind:id="['score3_'+index]" v-bind:name="['score3_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
                             </td>
                             <td rowspan="2">
-                                <input v-bind:id="['score4_'+index]" v-bind:name="['score4_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                                <input v-bind:id="['score4_'+index]" v-bind:name="['score4_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
                             </td>
                             <td rowspan="2">
-                                <input v-bind:id="['score5_'+index]" v-bind:name="['score5_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                                <input v-bind:id="['score5_'+index]" v-bind:name="['score5_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
                             </td>
                             <td rowspan="2">
                             </td>
@@ -105,11 +105,64 @@
                             <td>
                             </td>
                             <td>
-                                <input v-bind:id="['score2_'+index+'_'+indexGroup]" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                                <input v-bind:id="['score2_'+index+'_'+indexGroup]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
                             </td>
                             <td>
                             </td>
                         </tr>
+                    </tbody>
+
+                    <tbody v-bind:id="['departmentInfo_'+index]" class="departmentInfo" v-for="(departmentInfo, index) in departmentScoreInfoList" v-if="departmentScoreInfoList.length > 0" v-cloak>
+                    <tr  v-bind:id="['groupInfo_'+indexGroup]" name="groupInfo" v-for="(detailInfo, indexGroup) in departmentInfo.scoreDetailInfoList" v-if="indexGroup == 0">
+                        <td rowspan="2">
+                            {{index + 1}}
+                        </td>
+                        <td rowspan="2">
+                            <span v-bind:id="['departmentName_'+index]" >{{departmentInfo.departmentName}}</span>
+                        </td>
+                        <td>
+                            <span v-bind:id="['groupName_'+index+'_'+indexGroup]">{{detailInfo.groupName}}</span>
+                            <input v-bind:id="['groupId_'+index+'_'+indexGroup]" type="hidden" v-model="detailInfo.groupId">
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            <input v-bind:id="['score2_'+index+'_'+indexGroup]" v-model="detailInfo.score2" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td rowspan="2">
+                            <input v-bind:id="['score2_'+index]" v-bind:name="['score2_'+index]" v-model="departmentInfo.score2" class="department-score-input" type="number" step="0.01" placeholder="输入得分" />
+                        </td>
+                        <td rowspan="2">
+                            <input v-bind:id="['score3_'+index]" v-bind:name="['score3_'+index]" v-model="departmentInfo.score3" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                        </td>
+                        <td rowspan="2">
+                            <input v-bind:id="['score4_'+index]" v-bind:name="['score4_'+index]" v-model="departmentInfo.score4" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                        </td>
+                        <td rowspan="2">
+                            <input v-bind:id="['score5_'+index]" v-bind:name="['score5_'+index]" v-model="departmentInfo.score5" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                        </td>
+                        <td rowspan="2">
+                        </td>
+                        <td rowspan="2">
+                        </td>
+                    </tr>
+                    <tr  v-bind:id="['groupInfo_'+indexGroup]" name="groupInfo"  v-for="(detailInfo, indexGroup) in departmentInfo.scoreDetailInfoList" v-if="indexGroup > 0">
+                        <td class="">
+                            <span v-bind:id="['groupName_'+index+'_'+indexGroup]">{{detailInfo.groupName}}</span>
+                            <input v-bind:id="['groupId_'+index+'_'+indexGroup]" type="hidden" v-model="detailInfo.groupId">
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <input v-bind:id="['score2_'+index+'_'+indexGroup]" v-model="detailInfo.score2" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

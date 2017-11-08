@@ -32,7 +32,13 @@ $(document).ready(function() {
                 this.gameInfo = game;
                 this.roleList = game.gameRoleInfoList;
                 this.groupList = game.groupInfoList;
-
+                for (var i = 0; i < game.groupInfoList.length; i++){
+                    if (game.groupInfoList[i].scoreFlag === '0'){
+                        game.groupInfoList[i].scoreFlag = false;
+                    }else {
+                        game.groupInfoList[i].scoreFlag = true;
+                    }
+                }
                 $('#editGame').modal('show');
                 editor.setData(game.gameRole);
             },
@@ -73,10 +79,10 @@ $(document).ready(function() {
                         var groupItem = {};
                         groupItem["groupIndex"] = $("input[name='groupIndex_"+tempIndex+"']").val();
                         groupItem["groupName"] = $("input[name='groupName_"+tempIndex+"']").val();
-                        if ($("input[name='scoreFlag_"+tempIndex+"']").attr('checked')){
-                            roleDetail["scoreFlag_"] = '1';
+                        if ($("input[name='scoreFlag_"+tempIndex+"']").prop('checked')){
+                            groupItem["scoreFlag"] = '1';
                         }else {
-                            roleDetail["scoreFlag_"] = '0';
+                            groupItem["scoreFlag"] = '0';
                         }
                         if (groupItem["groupName"] === ""){
                             alert("分组名称不能为空");
