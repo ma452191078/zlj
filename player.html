@@ -86,6 +86,12 @@
                                 <td width="70%"><p>{{player.playerDepartment}}</p></td>
                                 <td><p>{{player.playerNum}}号</p></td>
                             </tr>
+                            <tr>
+                                <td colspan="2"><p>批号：{{player.playerBatchNum}}</p></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><p>配比：{{player.playeFrormula}}</p></td>
+                            </tr>
                         </table>
                     </div>
                     <div><a href="#" class="btn btn-sm btn-danger player-btn-del" role="button" @click="removePlayer(index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a></div>
@@ -120,13 +126,31 @@
                             </div>
                         </div>
 
-
+                        <!--样品单位-->
                         <div class="form-group">
                             <label for="playerDepartment" class="col-sm-2 control-label">样品单位</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="playerDepartment" placeholder="选手单位">
                             </div>
                         </div>
+
+                        <!--样品批号-->
+                        <div class="form-group">
+                            <label for="playerBatchNum" class="col-sm-2 control-label">样品批号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="playerBatchNum" placeholder="样品批号">
+                            </div>
+                        </div>
+
+                        <!--样品配比-->
+                        <div class="form-group">
+                            <label for="playerFormula" class="col-sm-2 control-label">样品配比</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="playerFormula" placeholder="样品配比">
+                            </div>
+                        </div>
+
+                        <!--展示顺序-->
                         <div class="form-group">
                             <label for="playerNum" class="col-sm-2 control-label">展示顺序</label>
                             <div class="col-sm-10">

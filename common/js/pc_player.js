@@ -40,6 +40,8 @@ $(document).ready(function() {
                 param['playerImg'] = playerImg;
                 param['groupId'] = playerGroup;
                 param['groupName'] = groupName;
+                param['playerBatchNum'] = playerBatchNum;
+                param['playerFormula'] = playerFormula;
                 var url = path + '/player/addPlayerInfo';
                 $.ajax({
                     data : param,
