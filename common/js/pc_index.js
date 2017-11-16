@@ -32,11 +32,13 @@ $(document).ready(function() {
                 this.gameInfo = game;
                 this.roleList = game.gameRoleInfoList;
                 this.groupList = game.groupInfoList;
-                for (var i = 0; i < game.groupInfoList.length; i++){
-                    if (game.groupInfoList[i].scoreFlag === '0'){
-                        game.groupInfoList[i].scoreFlag = false;
-                    }else {
-                        game.groupInfoList[i].scoreFlag = true;
+                if (game.groupInfoList != null && game.groupInfoList != "undefined"){
+                    for (var i = 0; i < game.groupInfoList.length; i++){
+                        if (game.groupInfoList[i].scoreFlag === '0'){
+                            game.groupInfoList[i].scoreFlag = false;
+                        }else {
+                            game.groupInfoList[i].scoreFlag = true;
+                        }
                     }
                 }
                 $('#editGame').modal('show');

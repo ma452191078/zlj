@@ -49,7 +49,7 @@ $(document).ready(function() {
                     timeout : 10000,
                     success : function(data) {
                         alert(data.message);
-                        if (data.flag == 'success'){
+                        if (data.flag === 'success'){
                             $('#addPlayer').modal('hide');
                             vm.addNewPlayer(data.playerInfo);
                         }
@@ -72,7 +72,7 @@ $(document).ready(function() {
                     dataType : 'JSON',
                     timeout : 10000,
                     success : function(data) {
-                        if (data.flag == 'failed'){
+                        if (data.flag === 'failed'){
                             alert(data.message);
                         }
                     },
@@ -127,7 +127,7 @@ function uploadImg() {
             console.log("正在进行，请稍候");
         },
         success : function(data) {
-            if(data.flag==='success'){
+            if(data.flag === 'success'){
                 alert('上传成功');
                 $('#playerImg').val(data.filePath);
             }

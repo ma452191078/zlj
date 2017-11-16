@@ -29,7 +29,7 @@ $(document).ready(function() {
             editScore : function (playerId, flag) {
                 var parameter = {};
                 if (this.scoreList.length == 0){
-                    var confirmAlert = confirm("该选手未收集到评分，确认停止积分吗？");
+                    var confirmAlert = confirm("该样品未收集到评分，确认停止积分吗？");
                     if (confirmAlert == false){
                         return;
                     }

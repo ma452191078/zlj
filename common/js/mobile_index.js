@@ -57,7 +57,7 @@ function getGroupList() {
 }
 
 /**
- * 获取参赛选手列表
+ * 获取参赛样品列表
  */
 function getPlayerList() {
     var parameter = {
@@ -175,7 +175,7 @@ function showModel(gameId, playerId, playerName) {
         success : function(data) {
             var message = $('#message');
             if (data.flag === 'success'){
-                message.html('选手<strong>'+playerName+'</strong>您已提交评分，不能再次评分。');
+                message.html('样品<strong>'+playerName+'</strong>您已提交评分，不能再次评分。');
                 $('#submitAlert').modal('open');
             }else{
                 message.html('');

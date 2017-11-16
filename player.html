@@ -101,18 +101,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="addPlayerLabel">添加参赛选手</h4>
+                    <h4 class="modal-title" id="addPlayerLabel">添加样品</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label for="playerName" class="col-sm-2 control-label">选手姓名</label>
+                            <label for="playerName" class="col-sm-2 control-label">样品名称</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="playerName" placeholder="选手姓名">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="playerGroup" class="col-sm-2 control-label">选手分组</label>
+                            <label for="playerGroup" class="col-sm-2 control-label">样品分组</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="playerGroup" name="playerGroup">
                                     <option v-for="(groupItem,index) in groupList" track-by=“groupIndex” v-bind:value="groupItem.groupId" v-cloak >{{groupItem.groupName}}</option>
@@ -122,19 +122,19 @@
 
 
                         <div class="form-group">
-                            <label for="playerDepartment" class="col-sm-2 control-label">选手单位</label>
+                            <label for="playerDepartment" class="col-sm-2 control-label">样品单位</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="playerDepartment" placeholder="选手单位">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="playerNum" class="col-sm-2 control-label">出场顺序</label>
+                            <label for="playerNum" class="col-sm-2 control-label">展示顺序</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="playerNum" placeholder="出场顺序">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="filePath" class="col-sm-2 control-label">选手照片</label>
+                            <label for="filePath" class="col-sm-2 control-label">样品照片</label>
                             <div class="col-sm-10">
                                 <input type="file" class="form-control" id="filePath" placeholder="选手照片" accept="image/gif,image/jpg,image/jpeg,image/bmp,image/png">
                                 <div class="btn btn-default" onclick="uploadImg()">上传图片</div>
