@@ -105,6 +105,7 @@ function getPlayerList() {
     gameId = getUrlParam("gameId");
     var parameter = {};
     parameter["gameId"] = gameId;
+    parameter["judgeId"] = null;
     var url = path + "/player/getPlayerListByGame";
     $.ajax({
         data : parameter,
