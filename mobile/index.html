@@ -41,19 +41,19 @@
              </button>
          </div>
          <div class="am-g" style="margin-top: 10px;" id="player_list" >
-             <div class="am-u-sm-6 am-u-end" class="player-item" v-for="(player,index) in playerList" v-if="player.groupId == groupItem.groupId">
+             <div class="am-u-sm-6 am-u-end" class="player-item" v-for="(player,index) in playerList" v-if="player.groupId == groupItem.groupId" v-cloak>
                  <div class="am-thumbnail" v-on:click="showModel(player.gameId,player.playerId,player.playerName)">
                      <img class="player_lg_img" onerror="this.src='../common/images/user_default.png'" v-bind:data-id="player.playerId" v-bind:src="imgUrl + player.playerImg"/>
                      <div class="am-thumbnail-caption">
                          <table style="width: 100%;">
                              <tr>
-                                 <td colspan="2"><h3>{{player.playerName}}</h3></td>
+                                 <td colspan="2"><h3 style="float: left;margin-bottom: 0;">{{player.playerName}}</h3> <span v-if="player.playerIsScore > 0" v-bind:id="player.playerId" class="am-badge am-badge-success am-round" style="float: right;">已评分</span></td>
                              </tr>
                              <tr>
-                                 <td colspan="2">{{player.groupName}}</td>
+                                 <td colspan="2">分组：{{player.groupName}}</td>
                              </tr>
                              <tr>
-                                 <td>{{player.playerFormula}}</td>
+                                 <td>配比：{{player.playerFormula}}</td>
                                  <td>{{player.playerNum}}号</td>
                              </tr>
                          </table>

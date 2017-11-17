@@ -32,6 +32,8 @@ $(document).ready(function() {
                 var playerImg = $('#playerImg').val();
                 var playerGroup = $('#playerGroup').val();
                 var groupName = $('#playerGroup').find("option:selected").text();
+                var playerBatchNum = $('#playerBatchNum').val();
+                var playerFormula = $('#playerFormula').val();
                 var param = {};
                 param["gameId"] = gameId;
                 param['playerName'] = playerName;
@@ -95,6 +97,7 @@ function getPlayerList() {
     gameId = getUrlParam("gameId");
     var parameter = {};
     parameter["gameId"] = gameId;
+    parameter["judgeId"] = null;
     var url = path + "/player/getPlayerListByGame";
     $.ajax({
         data : parameter,

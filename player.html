@@ -57,20 +57,20 @@
     <div class="row">
         <div class="row content-body">
             <div class="page-header col-sm-12">
-                <h3>添加选手 <small>{{gameInfo.gameName}} / {{gameInfo.gameOwner}} / {{gameInfo.startDate}}</small></h3>
+                <h3>添加样品 <small>{{gameInfo.gameName}} / {{gameInfo.gameOwner}} / {{gameInfo.startDate}}</small></h3>
             </div>
             <div style="margin-left: 15px;">
                 <a href="#" class="btn btn-sm btn-primary player-btn-del" role="button" style="margin-bottom: 10px; width: 100px;" data-toggle="modal" data-target="#addPlayer">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加选手</a>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加样品</a>
 
                 <a href="#" class="btn btn-sm btn-success player-btn-del" role="button" style="margin-bottom: 10px; width: 100px;" data-toggle="modal" data-target="#submitPlayer">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 添加完成
                 </a>
             </div>
         </div>
-        <!--选手列表-->
+        <!--样品列表-->
         <div class="row content-body" >
-            <!--选手信息卡片-->
+            <!--样品信息卡片-->
             <div class="player-item col-xs-2" v-for="(player,index) in playerList">
                 <div class="thumbnail">
                     <img class="player_lg_img" onerror="this.src='common/images/user_default.png'" v-bind:src="imgUrl + player.playerImg">
@@ -83,23 +83,23 @@
                                 <td colspan="2"><p>分组：{{player.groupName}}</p></td>
                             </tr>
                             <tr>
-                                <td width="70%"><p>{{player.playerDepartment}}</p></td>
-                                <td><p>{{player.playerNum}}号</p></td>
-                            </tr>
-                            <tr>
                                 <td colspan="2"><p>批号：{{player.playerBatchNum}}</p></td>
                             </tr>
                             <tr>
-                                <td colspan="2"><p>配比：{{player.playeFrormula}}</p></td>
+                                <td colspan="2"><p>配比：{{player.playerFormula}}</p></td>
+                            </tr>
+                            <tr>
+                                <td width="70%"><p>{{player.playerDepartment}}</p></td>
+                                <td><p>{{player.playerNum}}号</p></td>
                             </tr>
                         </table>
                     </div>
                     <div><a href="#" class="btn btn-sm btn-danger player-btn-del" role="button" @click="removePlayer(index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除</a></div>
                 </div>
             </div>
-            <!--选手信息卡片结束-->
+            <!--样品信息卡片结束-->
         </div>
-        <!--选手列表结束-->
+        <!--样品列表结束-->
     </div>
     <!-- Modal -->
     <div class="modal fade" id="addPlayer" tabindex="-1" role="dialog" aria-labelledby="addPlayerLabel">
@@ -114,7 +114,7 @@
                         <div class="form-group">
                             <label for="playerName" class="col-sm-2 control-label">样品名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="playerName" placeholder="选手姓名">
+                                <input type="text" class="form-control" id="playerName" placeholder="样品名称">
                             </div>
                         </div>
                         <div class="form-group">
@@ -130,7 +130,7 @@
                         <div class="form-group">
                             <label for="playerDepartment" class="col-sm-2 control-label">样品单位</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="playerDepartment" placeholder="选手单位">
+                                <input type="text" class="form-control" id="playerDepartment" placeholder="样品单位">
                             </div>
                         </div>
 
@@ -160,7 +160,7 @@
                         <div class="form-group">
                             <label for="filePath" class="col-sm-2 control-label">样品照片</label>
                             <div class="col-sm-10">
-                                <input type="file" class="form-control" id="filePath" placeholder="选手照片" accept="image/gif,image/jpg,image/jpeg,image/bmp,image/png">
+                                <input type="file" class="form-control" id="filePath" placeholder="样品照片" accept="image/gif,image/jpg,image/jpeg,image/bmp,image/png">
                                 <div class="btn btn-default" onclick="uploadImg()">上传图片</div>
                                 <span class="text-danger">请上传小于5MB的图片，图片最佳尺寸（175px * 175px）</span>
                                 <input type="hidden" id="playerImg">

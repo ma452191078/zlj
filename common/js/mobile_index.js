@@ -61,7 +61,8 @@ function getGroupList() {
  */
 function getPlayerList() {
     var parameter = {
-        gameId : getUrlParam('gameId')
+        gameId : getUrlParam('gameId'),
+        judgeId : store.get('judgeId')
     };
 
     var url = path + "/player/getPlayerListByGame";

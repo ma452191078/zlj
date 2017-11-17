@@ -24,6 +24,7 @@
     <script src="common/js/vue.min.js"></script>
     <script src="common/js/base.js"></script>
     <!--<script src="common/js/checkuser.js"></script>-->
+    <script src="common/js/echarts.js"></script>
     <script src="common/js/pc_result.js"></script>
 </head>
 <body>
@@ -38,7 +39,11 @@
                 </div>
             </div>
             <div class="row content-body-result" >
+                <!--<div id="playerCharts" style="width: 800px; height: 200px;">-->
+
+                <!--</div>-->
                 <div class="col-sm-8 result-playerList" id="playerList">
+
                     <table class="table" width="100%" v-for="groupInfo in groupList" v-cloak>
                         <thead>
                             <tr>

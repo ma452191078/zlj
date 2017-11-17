@@ -5,7 +5,7 @@
  var basePath = 'http://weixin.shidanli.cn:8081';
 
 //测试系统
-// var basePath = 'http://localhost:8081';
+// var basePath = 'http://localhost:8088';
 var actionName = "/qualityprize"
 var projectName = '/zlj'
 var path = basePath + actionName;
