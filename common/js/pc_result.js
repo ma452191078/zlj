@@ -73,7 +73,7 @@ function playerChartsInit(myCharts, groupInfo, playerResult) {
             j++;
         }
     }
-
+    
     myCharts = echarts.init(document.getElementById('playerCharts_'+groupInfo.groupId));
     myCharts.showLoading();
     myCharts.setOption({
@@ -87,9 +87,10 @@ function playerChartsInit(myCharts, groupInfo, playerResult) {
         xAxis: {
             splitLine:{show: false},//去除网格线
             axisLabel: {textStyle: {
-                color: 'auto',
-                fontSize : 12
-            }},
+                    color: 'auto',
+                    fontSize : 12
+                }
+            },
             data: playerList
         },
         yAxis: {
@@ -98,6 +99,7 @@ function playerChartsInit(myCharts, groupInfo, playerResult) {
         series: [{
             name: '得分',
             type: 'bar',
+            barMinHeight: 10,
             label: {
                 normal: {
                             show: true,
@@ -105,6 +107,9 @@ function playerChartsInit(myCharts, groupInfo, playerResult) {
                             fontSize: 12
                         }
                 },
+            itemStyle: {
+                normal: {color: '#ecbb1f'}
+            },
             data: scoreList
         }]
     });

@@ -60,9 +60,13 @@ function getGroupList() {
  * 获取参赛样品列表
  */
 function getPlayerList() {
+    var judgeId = store.get('judgeId');
+    // if (judgeId === undefined){
+    //     judgeId = '';
+    // }
     var parameter = {
         gameId : getUrlParam('gameId'),
-        judgeId : store.get('judgeId')
+        judgeId : judgeId
     };
 
     var url = path + "/player/getPlayerListByGame";
@@ -228,7 +232,18 @@ function initLocalStorage() {
             timeout : 10000,
             success : function(data) {
                 if (data.realNameFlag === '0'){
-                    $("#createJudge").modal("open");
+                    // $("#createJudge").modal("open");
+                    $('#createJudge').modal({
+                        relatedTarget: this,
+                        onConfirm: function(options) {
+                            createJudge();
+
+                        },
+                        closeOnConfirm: false,
+                        onCancel: function() {
+
+                        }
+                    });
                 }else {
                     createJudge();
                 }
@@ -246,29 +261,34 @@ function initLocalStorage() {
 function createJudge() {
     var judgeName = $("#judgeName").val();
     if (judgeName === ""){
-        judgeName = "评委";
-    }
-    var parameter = {};
-    parameter["gameId"]= getUrlParam("gameId");
-    parameter["judgeName"]= judgeName;
+        $("#judgeMessage").html("↑↑请输入您的姓名");
+        return;
+    }else{
+        var parameter = {};
+        parameter["gameId"]= getUrlParam("gameId");
+        parameter["judgeName"]= judgeName;
 
-    var url = path + "/judge/createJudge";
-    $.ajax({
-        data : parameter,
-        url : url,
-        type : 'POST',
-        dataType : 'JSON',
-        timeout : 10000,
-        success : function(data) {
-            if (data.errFlag === "0"){
-                alert(data.errMsg);
-            }else{
-                store.set("judgeName", data.judgeInfo.judgeName);
-                store.set("judgeId", data.judgeInfo.judgeId);
+        var url = path + "/judge/createJudge";
+        $.ajax({
+            data : parameter,
+            url : url,
+            type : 'POST',
+            dataType : 'JSON',
+            timeout : 10000,
+            success : function(data) {
+                if (data.errFlag === "0"){
+                    alert(data.errMsg);
+                }else{
+                    store.set("judgeName", data.judgeInfo.judgeName);
+                    store.set("judgeId", data.judgeInfo.judgeId);
+                    $('#createJudge').modal("close");
+                    getPlayerList();
+                }
+            },
+            error : function(data) {
+                alert("发生错误，稍后请重新刷新!");
             }
-        },
-        error : function(data) {
-            alert("发生错误，稍后请重新刷新!");
-        }
-    });
+        });
+    }
+
 }

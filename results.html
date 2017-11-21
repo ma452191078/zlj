@@ -40,48 +40,48 @@
             </div>
             <div class="row content-body-result" >
 
-                <div class="col-sm-10 result-playerList" id="playerList">
-                    <div v-bind:id="['playerCharts_'+groupInfo.groupId]" style="width: 100%; height: 300px;" v-for="groupInfo in groupList" v-cloak>
+                <div class="col-sm-12 result-playerList" id="playerList">
+                    <div v-bind:id="['playerCharts_'+groupInfo.groupId]" style="height: 300px;" v-for="groupInfo in groupList" v-cloak>
 
                     </div>
-                    <table class="table" width="100%" v-for="groupInfo in groupList" v-cloak>
-                        <thead>
-                            <tr>
-                                <th colspan="2"> <h3>{{groupInfo.groupName}}</h3> </th>
-                            </tr>
-                            <tr>
-                                <th>排名</th>
-                                <th>样品得分</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(playerInfo,index) in playerResult" v-cloak v-if="playerInfo.groupId == groupInfo.groupId">
-                                <td class="result-playerList-rank">
-                                    {{playerInfo.playerRanking}}
-                                </td>
-                                <td>
-                                    <div class="progress progress-result">
-                                        <div class="progress-bar progress-bar-result" role="progressbar" v-bind:aria-valuenow="playerInfo.playerAverage" v-bind:style="{ width: playerInfo.playerAverage + '%'}" aria-valuemin="0" aria-valuemax="100">
-                                            <span>{{playerInfo.playerName}}</span><span>{{playerInfo.playerAverage}}分</span>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!--<table class="table" width="100%" v-for="groupInfo in groupList" v-cloak>-->
+                        <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th colspan="2"> <h3>{{groupInfo.groupName}}</h3> </th>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<th>排名</th>-->
+                                <!--<th>样品得分</th>-->
+                            <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                            <!--<tr v-for="(playerInfo,index) in playerResult" v-cloak v-if="playerInfo.groupId == groupInfo.groupId">-->
+                                <!--<td class="result-playerList-rank">-->
+                                    <!--{{playerInfo.playerRanking}}-->
+                                <!--</td>-->
+                                <!--<td>-->
+                                    <!--<div class="progress progress-result">-->
+                                        <!--<div class="progress-bar progress-bar-result" role="progressbar" v-bind:aria-valuenow="playerInfo.playerAverage" v-bind:style="{ width: playerInfo.playerAverage + '%'}" aria-valuemin="0" aria-valuemax="100">-->
+                                            <!--<span>{{playerInfo.playerName}}</span><span>{{playerInfo.playerAverage}}分</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
                 </div>
-                <div class="col-sm-2" id="departmentList">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading"> 公司排名 </div>
-                        <table class="table">
-                            <tr v-for="(departmentInfo, index) in departmentResult" v-cloak>
-                                <td class="result-department-td">
-                                    <span class="result-department-rank"><strong>{{departmentInfo.playerRanking}}</strong></span><span class="result-department-name">{{departmentInfo.playerDepartment}}</span><span class="result-department-score">{{departmentInfo.playerAverage}}</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                <!--<div class="col-sm-2" id="departmentList">-->
+                    <!--<div class="panel panel-danger">-->
+                        <!--<div class="panel-heading"> 公司排名 </div>-->
+                        <!--<table class="table">-->
+                            <!--<tr v-for="(departmentInfo, index) in departmentResult" v-cloak>-->
+                                <!--<td class="result-department-td">-->
+                                    <!--<span class="result-department-rank"><strong>{{departmentInfo.playerRanking}}</strong></span><span class="result-department-name">{{departmentInfo.playerDepartment}}</span><span class="result-department-score">{{departmentInfo.playerAverage}}</span>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </div>
