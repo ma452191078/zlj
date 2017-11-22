@@ -79,6 +79,7 @@ $(document).ready(function() {
                 $("#game_group_list").find(".group_item").each(
                     function() {
                         var groupItem = {};
+                        groupItem["groupId"] = $("input[name='groupId_"+tempIndex+"']").val();
                         groupItem["groupIndex"] = $("input[name='groupIndex_"+tempIndex+"']").val();
                         groupItem["groupName"] = $("input[name='groupName_"+tempIndex+"']").val();
                         if ($("input[name='scoreFlag_"+tempIndex+"']").prop('checked')){
@@ -99,6 +100,7 @@ $(document).ready(function() {
                 $("#roleList").find(".roleDetail").each(
                     function() {
                         var roleDetail = {};
+                        roleDetail["roleId"] = $("input[name='roleId_"+tempIndex+"']").val();
                         roleDetail["roleIndex"] = $("input[name='roleIndex_"+tempIndex+"']").val();
                         roleDetail["roleName"] = $("input[name='roleName_"+tempIndex+"']").val();
                         roleDetail["roleScore"] =  $("input[name='roleScore_"+tempIndex+"']").val();

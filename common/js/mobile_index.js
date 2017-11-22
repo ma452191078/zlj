@@ -236,7 +236,7 @@ function initLocalStorage() {
                     $('#createJudge').modal({
                         relatedTarget: this,
                         onConfirm: function(options) {
-                            createJudge();
+                            createJudge(data.realNameFlag);
 
                         },
                         closeOnConfirm: false,
@@ -258,13 +258,16 @@ function initLocalStorage() {
 /**
  * 创建评委
  */
-function createJudge() {
+function createJudge(realNameFlag) {
     var judgeName = $("#judgeName").val();
-    if (judgeName === ""){
+    if (judgeName === "" && realNameFlag === "0"){
         $("#judgeMessage").html("↑↑请输入您的姓名");
         return;
     }else{
         var parameter = {};
+        if(realNameFlag !== "0"){
+            judgeName = "评委";
+        }
         parameter["gameId"]= getUrlParam("gameId");
         parameter["judgeName"]= judgeName;
 

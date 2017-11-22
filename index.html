@@ -149,6 +149,7 @@
                                     <div class="game_gourp_list" id="game_group_list" style="float: left;">
                                         <div class="group_item form-inline" id="group_item_" name="group_item"  v-for="(groupItem,index) in groupList" track-by=“groupIndex” v-cloak >
                                             <input type="hidden" id="groupIndex" v-bind:name="['groupIndex_'+index]" v-model="groupItem.groupIndex"/>
+                                            <input type="hidden" id="groupId" v-bind:name="['groupId_'+index]" v-model="groupItem.groupId"/>
                                             <input type="text"  class="form-control item-input" id="groupName" v-bind:name="['groupName_'+index]" v-model="groupItem.groupName"/>
                                             <div class="checkbox-inline">
                                                 <label><input type="checkbox" v-bind:name="'scoreFlag_'+index" v-model="groupItem.scoreFlag"> 计分项</label>
@@ -217,6 +218,7 @@
                                                 <td>
                                                     <div>
                                                         <input type="hidden" id="roleIndex" v-bind:name="['roleIndex_'+index]" v-model="roleDetail.roleIndex"/>
+                                                        <input type="hidden" id="roleId" v-bind:name="['roleId_'+index]" v-model="roleDetail.roleId"/>
                                                         <input type="text"  class="form-control" id="roleName" v-bind:name="['roleName_'+index]" placeholder="输入评分项"  v-model="roleDetail.roleName"/>
 
                                                     </div>
