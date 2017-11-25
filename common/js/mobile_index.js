@@ -216,7 +216,7 @@ function initLocalStorage() {
         return;
     }
     var judgeId = store.get('judgeId');
-    var judgeName = store.get('judgeName');
+    // var judgeName = store.get('judgeName');
 
     if (judgeId === null || judgeId === undefined || judgeId === ''){
         var parameter = {};
@@ -231,22 +231,7 @@ function initLocalStorage() {
             dataType : 'JSON',
             timeout : 10000,
             success : function(data) {
-                if (data.realNameFlag === '0'){
-                    // $("#createJudge").modal("open");
-                    $('#createJudge').modal({
-                        relatedTarget: this,
-                        onConfirm: function(options) {
-                            createJudge(data.realNameFlag);
-
-                        },
-                        closeOnConfirm: false,
-                        onCancel: function() {
-
-                        }
-                    });
-                }else {
-                    createJudge();
-                }
+                createJudge();
             },
             error : function(data) {
 
@@ -259,39 +244,29 @@ function initLocalStorage() {
  * 创建评委
  */
 function createJudge(realNameFlag) {
-    var judgeName = $("#judgeName").val();
-    if (judgeName === "" && realNameFlag === "0"){
-        $("#judgeMessage").html("↑↑请输入您的姓名");
-        return;
-    }else{
-        var parameter = {};
-        if(realNameFlag !== "0"){
-            judgeName = "评委";
-        }
-        parameter["gameId"]= getUrlParam("gameId");
-        parameter["judgeName"]= judgeName;
-
-        var url = path + "/judge/createJudge";
-        $.ajax({
-            data : parameter,
-            url : url,
-            type : 'POST',
-            dataType : 'JSON',
-            timeout : 10000,
-            success : function(data) {
-                if (data.errFlag === "0"){
-                    alert(data.errMsg);
-                }else{
-                    store.set("judgeName", data.judgeInfo.judgeName);
-                    store.set("judgeId", data.judgeInfo.judgeId);
-                    $('#createJudge').modal("close");
-                    getPlayerList();
-                }
-            },
-            error : function(data) {
-                alert("发生错误，稍后请重新刷新!");
+    var code = getUrlParam('code');
+    var parameter = {};
+    parameter["gameId"]= getUrlParam("gameId");
+    parameter["code"] = code;
+    var url = path + "/judge/createJudge";
+    $.ajax({
+        data : parameter,
+        url : url,
+        type : 'POST',
+        dataType : 'JSON',
+        timeout : 10000,
+        success : function(data) {
+            if (data.errFlag === "0"){
+                alert(data.errMsg);
+            }else{
+                store.set("judgeName", data.judgeInfo.judgeName);
+                store.set("judgeId", data.judgeInfo.judgeId);
             }
-        });
-    }
+        },
+        error : function(data) {
+            alert("发生错误，稍后请重新刷新!");
+        }
+    });
+
 
 }
