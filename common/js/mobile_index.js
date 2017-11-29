@@ -256,7 +256,7 @@ function createJudge(realNameFlag) {
         dataType : 'JSON',
         timeout : 10000,
         success : function(data) {
-            if (data.errFlag === "0"){
+            if (data.errFlag === 0){
                 alert(data.errMsg);
             }else{
                 store.set("judgeName", data.judgeInfo.judgeName);
