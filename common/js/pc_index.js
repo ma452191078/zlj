@@ -123,7 +123,6 @@ $(document).ready(function() {
                 param['gameRoleInfoList'] = roleList;
                 param['groupInfoList'] = groupList;
                 param['addBy'] = userId;
-                param['realNameFlag'] = realNameFlag;
                 param['changeScoreFlag'] = changeScoreFlag;
                 var jsonOb = eval(param);
 
