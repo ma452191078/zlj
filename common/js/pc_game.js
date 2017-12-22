@@ -135,6 +135,7 @@ function showQr() {
         timeout : 10000,
         success : function(data) {
             $('#gameUrl').val(data.url);
+            $('#qrcode').qrcode({width: 300,height: 300,text: data.url});
             $('#qrModal').modal('show');
         },
         error : function() {
