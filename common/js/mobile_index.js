@@ -4,8 +4,7 @@ var vm = null;
 // 初始化加载vue
 $(document).ready(function() {
     initLocalStorage();
-    getGroupList();
-    getPlayerList();
+
     vm = new Vue({
         el : '#body',
         data : {
@@ -237,6 +236,9 @@ function initLocalStorage() {
 
             }
         });
+    }else{
+        getGroupList();
+        getPlayerList();
     }
 }
 
@@ -261,6 +263,8 @@ function createJudge(realNameFlag) {
             }else{
                 store.set("judgeName", data.judgeInfo.judgeName);
                 store.set("judgeId", data.judgeInfo.judgeId);
+                getGroupList();
+                getPlayerList();
             }
         },
         error : function(data) {
