@@ -25,7 +25,7 @@ $(document).ready(function() {
                     var departmentInfo = {};
                     departmentInfo["gameId"] = gameId;
                     departmentInfo["departmentName"] = $("#departmentName_"+i).html();
-                    departmentInfo["score2"] = $("#score2_"+i).val();
+                    departmentInfo["score2"] = '0';
                     departmentInfo["score3"] = $("#score3_"+i).val();
                     departmentInfo["score4"] = $("#score4_"+i).val();
                     departmentInfo["score5"] = $("#score5_"+i).val();
