@@ -104,11 +104,12 @@ function playerChartsInit(myCharts, groupInfo, playerResult) {
                 normal: {
                             show: true,
                             position: 'inside',
-                            fontSize: 12
+                            fontSize: 12,
+                            color: '#434343'
                         }
                 },
             itemStyle: {
-                normal: {color: '#ecbb1f'}
+                normal: {color: '#acbb2e'}
             },
             data: scoreList
         }]

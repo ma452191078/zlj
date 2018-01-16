@@ -14,18 +14,20 @@
     <link rel="stylesheet" href="../amazeui/css/app.css">
     <script src="../common/js/base.js"></script>
     <script src="../common/js/jquery-3.2.1.min.js"></script>
-    <script src="../common/js/mobile_index.js"></script>
     <script src="../common/js/vue.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="../common/js/mobile_index.js"></script>
+
 </head>
 <body >
- <div id="body">
+ <div id="body" v-cloak>
      <div id="role_head">
          <section  style="background-color: white;" data-am-widget="accordion" class="am-accordion am-accordion-default" data-am-accordion='{ "multiple": true }'>
              <dl class="am-accordion-item am-active">
                  <dt class="am-accordion-title">
                      点击此处查看评分标准
                  </dt>
-                 <dd class="am-accordion-bd am-collapse am-in" v-cloak>
+                 <dd class="am-accordion-bd am-collapse am-in">
                      <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
                      <div class="am-accordion-content" v-html="gameInfo.gameRole">
                         {{ gameInfo.gameRole }}
@@ -35,20 +37,20 @@
          </section>
      </div>
 
-     <div v-for="groupItem in groupList" v-cloak>
+     <div v-for="groupItem in groupList">
          <div data-am-sticky>
              <button class="am-btn am-btn-primary am-btn-block">
                  {{groupItem.groupName}}
              </button>
          </div>
          <div class="am-g" style="margin-top: 10px;" id="player_list" >
-             <div class="am-u-sm-6 am-u-end" class="player-item" v-for="(player,index) in playerList" v-if="player.groupId == groupItem.groupId" v-cloak>
+             <div class="am-u-sm-6 am-u-end" class="player-item" v-for="(player,index) in playerList" v-if="player.groupId == groupItem.groupId">
                  <div class="am-thumbnail" v-on:click="showModel(player.gameId,player.playerId,player.playerName)">
                      <img class="player_lg_img" onerror="this.src='../common/images/user_default.png'" v-bind:data-id="player.playerId" v-bind:src="imgUrl + player.playerImg"/>
                      <div class="am-thumbnail-caption">
                          <table style="width: 100%;">
                              <tr>
-                                 <td colspan="2"><h3 style="float: left;margin-bottom: 0;">{{player.playerName}}</h3> <span v-if="player.playerIsScore > 0" v-bind:id="player.playerId" class="am-badge am-badge-success am-round" style="float: right;">已评分</span></td>
+                                 <td colspan="2"><h3 style="float: left;margin-bottom: 0;">{{player.playerName}}</h3> <span v-if="player.playerIsScore > 0" v-bind:id="player.playerId" class="am-badge am-badge-success am-round" style="float: right; font-size: 15px;">得分：{{player.playerAverage}}</span></td>
                              </tr>
                              <tr>
                                  <td colspan="2">分组：{{player.groupName}}</td>

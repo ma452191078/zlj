@@ -3,6 +3,7 @@ var vm = null;
 
 // 初始化加载vue
 $(document).ready(function() {
+    wechatConfigInit();
     initLocalStorage();
 
     vm = new Vue({
@@ -150,6 +151,13 @@ function onSumbitScore(gameId, playerId) {
             message.html(data.message);
             if (data.flag === 'success'){
                 getPlayerList();
+                var tmpIndex = 0;
+                $("#roleScoreList").find(".roleScoreDetail").each(
+                    function () {
+                        $("input[name='roleScore_"+tmpIndex+"']").val('');
+                        tmpIndex ++;
+                    }
+                );
             }
             $('#my-prompt').modal('close');
             $('#submitAlert').modal('open');
@@ -271,6 +279,51 @@ function createJudge(realNameFlag) {
             alert("发生错误，稍后请重新刷新!");
         }
     });
+}
 
+function wechatConfigInit() {
+    var pageUrl = window.location.href;
+    pageUrl = pageUrl.replace(/localhost:63342/, 'weixin.shidanli.cn');
+    var parameter = {};
+    parameter["pageUrl"]= pageUrl;
+
+    var url = path + "/wechat/getJsapiTicket";
+    $.ajax({
+        data : parameter,
+        url : url,
+        type : 'POST',
+        dataType : 'JSON',
+        timeout : 10000,
+        success : function(data) {
+            if (data.errFlag === 1){
+                wx.config({
+                    beta: true,// 必须这么写，否则在微信插件有些jsapi会有问题
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: data.wxJsapiSignature.appId, // 必填，企业微信的corpID
+                    timestamp: data.wxJsapiSignature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: data.wxJsapiSignature.nonceStr, // 必填，生成签名的随机串
+                    signature: data.wxJsapiSignature.signature,// 必填，签名，见[附录1](#11974)
+                    jsApiList: ['onHistoryBack','closeWindow'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+            }
+        },
+        error : function(data) {
+            alert("发生错误，稍后请重新刷新!");
+        }
+    });
 
 }
+
+wx.closeWindow(
+    function () {
+        var waitFlag = '';
+        for (var i = 0; i < vm.playerList.length; i ++){
+            if (vm.playerList[i].playerIsScore === '0'){
+                waitFlag = '1';
+            }
+        }
+        if (waitFlag === '1'){
+            return confirm("还有样品未评分，确认退出吗？");
+        }
+    }
+);
