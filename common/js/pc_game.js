@@ -151,3 +151,7 @@ function showResult() {
 function showDepartment() {
     window.open("department.html?gameId=" + getUrlParam("gameId")) ;
 }
+
+function showJudgeList() {
+    window.open("judgelist.html?gameId=" + getUrlParam("gameId")) ;
+}

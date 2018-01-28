@@ -151,13 +151,14 @@ function onSumbitScore(gameId, playerId) {
             message.html(data.message);
             if (data.flag === 'success'){
                 getPlayerList();
-                var tmpIndex = 0;
-                $("#roleScoreList").find(".roleScoreDetail").each(
-                    function () {
-                        $("input[name='roleScore_"+tmpIndex+"']").val('');
-                        tmpIndex ++;
-                    }
-                );
+                $('.am-modal-prompt-input').val('');
+                // var tmpIndex = 0;
+                // $("#roleScoreList").find(".roleScoreDetail").each(
+                //     function () {
+                //         $("input[name='roleScore_"+tmpIndex+"']").val('');
+                //         tmpIndex ++;
+                //     }
+                // );
             }
             $('#my-prompt').modal('close');
             $('#submitAlert').modal('open');
@@ -283,7 +284,7 @@ function createJudge(realNameFlag) {
 
 function wechatConfigInit() {
     var pageUrl = window.location.href;
-    pageUrl = pageUrl.replace(/localhost:63342/, 'weixin.shidanli.cn');
+    // pageUrl = pageUrl.replace(/localhost:63342/, 'weixin.shidanli.cn');
     var parameter = {};
     parameter["pageUrl"]= pageUrl;
 
