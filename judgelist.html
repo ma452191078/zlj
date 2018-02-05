@@ -78,6 +78,7 @@
                 <div class="row" style="margin: 10px;">
                     <table class="table table-striped" width="100%">
                         <thead>
+                            <th>得分序号</th>
                             <th>样品序号</th>
                             <th>样品名称</th>
                             <th>样品工艺</th>
@@ -86,6 +87,7 @@
                             </thead>
                         <tbody>
                             <tr v-for="(playerInfo,index) in playerResult">
+                                <td>{{index + 1}}</td>
                                 <td>{{playerInfo.playerNum}}</td>
                                 <td>{{playerInfo.playerName}}</td>
                                 <td>{{playerInfo.groupName}}</td>

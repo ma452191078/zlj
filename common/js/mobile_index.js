@@ -223,10 +223,11 @@ function initLocalStorage() {
         alert('您的浏览器无法使用本地存储功能. 请禁用隐私模式或更新您的浏览器。');
         return;
     }
-    var judgeId = store.get('judgeId');
+    store.clear();
+    // var judgeId = store.get('judgeId');
     // var judgeName = store.get('judgeName');
 
-    if (judgeId === null || judgeId === undefined || judgeId === ''){
+    // if (judgeId === null || judgeId === undefined || judgeId === ''){
         var parameter = {};
         parameter["gameId"]= getUrlParam('gameId');
         parameter["code"]= getUrlParam('code');
@@ -245,10 +246,10 @@ function initLocalStorage() {
 
             }
         });
-    }else{
-        getGroupList();
-        getPlayerList();
-    }
+    // }else{
+    //     getGroupList();
+    //     getPlayerList();
+    // }
 }
 
 /**
