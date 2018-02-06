@@ -3,6 +3,7 @@ var vm = null;
 
 // 初始化加载vue
 $(document).ready(function() {
+
     wechatConfigInit();
     initLocalStorage();
 
@@ -305,7 +306,23 @@ function wechatConfigInit() {
                     timestamp: data.wxJsapiSignature.timestamp, // 必填，生成签名的时间戳
                     nonceStr: data.wxJsapiSignature.nonceStr, // 必填，生成签名的随机串
                     signature: data.wxJsapiSignature.signature,// 必填，签名，见[附录1](#11974)
-                    jsApiList: ['onHistoryBack','closeWindow'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    jsApiList: ['onHistoryBack','closeWindow','hideOptionMenu'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function () {
+                    wx.hideOptionMenu();
+                    // wx.closeWindow(
+                    //     function () {
+                    //         var waitFlag = '';
+                    //         for (var i = 0; i < vm.playerList.length; i ++){
+                    //             if (vm.playerList[i].playerIsScore === '0'){
+                    //                 waitFlag = '1';
+                    //             }
+                    //         }
+                    //         if (waitFlag === '1'){
+                    //             return confirm("还有样品未评分，确认退出吗？");
+                    //         }
+                    //     }
+                    // );
                 });
             }
         },
@@ -316,16 +333,3 @@ function wechatConfigInit() {
 
 }
 
-wx.closeWindow(
-    function () {
-        var waitFlag = '';
-        for (var i = 0; i < vm.playerList.length; i ++){
-            if (vm.playerList[i].playerIsScore === '0'){
-                waitFlag = '1';
-            }
-        }
-        if (waitFlag === '1'){
-            return confirm("还有样品未评分，确认退出吗？");
-        }
-    }
-);
