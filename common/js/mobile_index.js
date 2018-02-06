@@ -310,19 +310,19 @@ function wechatConfigInit() {
                 });
                 wx.ready(function () {
                     wx.hideOptionMenu();
-                    // wx.closeWindow(
-                    //     function () {
-                    //         var waitFlag = '';
-                    //         for (var i = 0; i < vm.playerList.length; i ++){
-                    //             if (vm.playerList[i].playerIsScore === '0'){
-                    //                 waitFlag = '1';
-                    //             }
-                    //         }
-                    //         if (waitFlag === '1'){
-                    //             return confirm("还有样品未评分，确认退出吗？");
-                    //         }
-                    //     }
-                    // );
+                    wx.onHistoryBack(
+                        function () {
+                            var waitFlag = '';
+                            for (var i = 0; i < vm.playerList.length; i ++){
+                                if (vm.playerList[i].playerIsScore === '0'){
+                                    waitFlag = '1';
+                                }
+                            }
+                            if (waitFlag === '1'){
+                                return confirm("还有样品未评分，确认退出吗？");
+                            }
+                        }
+                    );
                 });
             }
         },
