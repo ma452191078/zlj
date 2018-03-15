@@ -61,11 +61,13 @@
             <div class="col-sm-3" id="playerList">
                 <table class="table table-striped" width="100%">
                     <thead>
+                        <th></th>
                         <th>评委姓名</th>
                         <th width="200px">操作</th>
                     </thead>
                     <tbody>
                         <tr v-for="(judgeInfo,index) in judgeInfoList">
+                            <td>{{index + 1}}</td>
                             <td>{{judgeInfo.judgeName}}</td>
                             <td>
                                 <div class="btn btn-sm btn-default" @click="showScore(index)">查看评分</div>
