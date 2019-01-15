@@ -47,8 +47,7 @@
                             <th rowspan="2" class="text-center">生产工艺</th>
                             <th colspan="3" class="text-center">样品得分</th>
                             <th rowspan="2" class="text-center">市场大比 武得分</th>
-                            <th rowspan="2" class="text-center">厂内产品 考评得分</th>
-                            <th rowspan="2" class="text-center">市场产品 考评得分</th>
+                            <th colspan="4" class="text-center">产品质量综合评比得分</th>
                             <th rowspan="2" class="text-center">销售市场满意度测评得分</th>
                             <th rowspan="2" class="text-center">总裁质量 奖得分</th>
                             <th rowspan="2" class="text-center">综合排名</th>
@@ -57,6 +56,10 @@
                             <th class="text-center">外观质 量得分</th>
                             <th class="text-center">养分含 量扣分</th>
                             <th class="text-center">合计</th>
+                            <th class="text-center">厂内产品质量监督考评得分</th>
+                            <th class="text-center">市场产品监督考评得分</th>
+                            <th class="text-center">市场反馈产品质量问题考评得分</th>
+                            <th class="text-center">得分</th>
                         </tr>
                     </thead>
                     <tbody v-bind:id="['departmentInfo_'+index]" class="departmentInfo" v-for="(departmentInfo, index) in departmentInfoList" v-if="departmentScoreInfoList.length == 0" v-cloak>
@@ -83,11 +86,18 @@
                             <td rowspan="2">
                                 <!--<input v-bind:id="['score2_'+index]" v-bind:name="['score2_'+index]" class="department-score-input"  type="number" step="0.01" placeholder="输入得分" value="0" />-->
                             </td>
+
                             <td rowspan="2">
                                 <input v-bind:id="['score3_'+index]" v-bind:name="['score3_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
                             </td>
                             <td rowspan="2">
                                 <input v-bind:id="['score4_'+index]" v-bind:name="['score4_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
+                            </td>
+                            <td rowspan="2">
+                                <input v-bind:id="['score6_'+index]" v-bind:name="['score6_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
+                            </td>
+                            <td rowspan="2">
+
                             </td>
                             <td rowspan="2">
                                 <input v-bind:id="['score5_'+index]" v-bind:name="['score5_'+index]" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
@@ -141,6 +151,12 @@
                         </td>
                         <td rowspan="2">
                             <input v-bind:id="['score4_'+index]" v-bind:name="['score4_'+index]" v-model="departmentInfo.score4" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
+                        </td>
+                        <td rowspan="2">
+                            <input v-bind:id="['score6_'+index]" v-bind:name="['score6_'+index]" v-model="departmentInfo.score56" class="department-score-input" type="number" step="0.01" placeholder="输入得分" value="0"/>
+                        </td>
+                        <td rowspan="2">
+
                         </td>
                         <td rowspan="2">
                             <input v-bind:id="['score5_'+index]" v-bind:name="['score5_'+index]" v-model="departmentInfo.score5" class="department-score-input" type="number" step="0.01" placeholder="输入得分"/>
