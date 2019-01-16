@@ -29,6 +29,7 @@ $(document).ready(function() {
                     departmentInfo["score3"] = $("#score3_"+i).val();
                     departmentInfo["score4"] = $("#score4_"+i).val();
                     departmentInfo["score5"] = $("#score5_"+i).val();
+                    departmentInfo["score6"] = $("#score6_"+i).val();
                     var detailList = [];
                     for (var j = 0; j < this.groupInfoList.length; j++){
                         var detailInfo = {};
