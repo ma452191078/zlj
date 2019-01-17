@@ -41,7 +41,7 @@ function getGroupList() {
         gameId : getUrlParam('gameId')
     };
 
-    var url = path + "/group/getGroupInfoList";
+    var url = mPath + "/group/getGroupInfoList";
     $.ajax({
         data : parameter,
         url : url,
@@ -70,7 +70,7 @@ function getPlayerList() {
         judgeId : judgeId
     };
 
-    var url = path + "/player/getPlayerListByGame";
+    var url = mPath + "/player/getPlayerListByGame";
     $.ajax({
         data : parameter,
         url : url,
@@ -138,7 +138,7 @@ function onSumbitScore(gameId, playerId) {
     parameter['scoreRoleInfoList'] = roleList;
     var jsonOb = eval(parameter);
 
-    var url = path + "/score/addScore";
+    var url = mPath + "/score/addScore";
     $.ajax({
         data : JSON.stringify(jsonOb),
         url : url,
@@ -179,7 +179,7 @@ function showModel(gameId, playerId, playerName) {
     parameter["playerId"]= playerId;
     parameter["gameId"]= gameId;
     parameter['judgeId'] = store.get('judgeId');
-    var url = path + "/score/checkScoreByJudgeId";
+    var url = mPath + "/score/checkScoreByJudgeId";
     $.ajax({
         data : parameter,
         url : url,
@@ -233,7 +233,7 @@ function initLocalStorage() {
         parameter["gameId"]= getUrlParam('gameId');
         parameter["code"]= getUrlParam('code');
 
-        var url = path + "/game/getGameInfoById";
+        var url = mPath + "/game/getGameInfoById";
         $.ajax({
             data : parameter,
             url : url,
@@ -261,7 +261,7 @@ function createJudge(realNameFlag) {
     var parameter = {};
     parameter["gameId"]= getUrlParam("gameId");
     parameter["code"] = code;
-    var url = path + "/judge/createJudge";
+    var url = mPath + "/judge/createJudge";
     $.ajax({
         data : parameter,
         url : url,
@@ -290,7 +290,7 @@ function wechatConfigInit() {
     var parameter = {};
     parameter["pageUrl"]= pageUrl;
 
-    var url = path + "/wechat/getJsapiTicket";
+    var url = mPath + "/wechat/getJsapiTicket";
     $.ajax({
         data : parameter,
         url : url,
