@@ -90,13 +90,20 @@ function playerChartsInit(myCharts, groupInfo, playerResult) {
             splitLine:{show: false},//去除网格线
             axisLabel: {textStyle: {
                     color: 'auto',
-                    fontSize : 12
+                    fontSize : 12,
+                    fontWeight:600
                 }
             },
             data: playerList
         },
         yAxis: {
-            splitLine:{show: false}//去除网格线
+            splitLine:{show: false},//去除网格线
+            axisLabel: {textStyle: {
+                    color: 'auto',
+                    fontSize : 12,
+                    fontWeight:600
+                }
+            }
         },
         series: [{
             name: '得分',
@@ -105,15 +112,18 @@ function playerChartsInit(myCharts, groupInfo, playerResult) {
             label: {
                 normal: {
                             show: true,
-                            position: 'inside',
-                            fontSize: 12,
-                            color: '#434343'
+                            position: 'top',
+                            fontSize: 11,
+                            color: '#000000',
+                            fontWeight:600,
+                            formatter:function(data){ return data.value.toFixed(2);}
                         }
-                },
+            },
             itemStyle: {
                 normal: {color: chartIndex % 2 == 0 ?charStyle[0]:charStyle[1]}
             },
             data: scoreList
+
         }]
     });
     myCharts.hideLoading();
