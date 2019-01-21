@@ -5,6 +5,8 @@
 var vm = null;
 var gameId = getUrlParam("gameId");
 var playerCharts;
+var chartIndex = 0;
+var charStyle = ['#0070C0','#00B050','#0591bb'];
 
 // 初始化加载vue
 $(document).ready(function() {
@@ -109,11 +111,11 @@ function playerChartsInit(myCharts, groupInfo, playerResult) {
                         }
                 },
             itemStyle: {
-                normal: {color: '#acbb2e'}
+                normal: {color: chartIndex % 2 == 0 ?charStyle[0]:charStyle[1]}
             },
             data: scoreList
         }]
     });
     myCharts.hideLoading();
-
+    chartIndex ++;
 }
