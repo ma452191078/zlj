@@ -136,7 +136,7 @@ function showQr() {
         success : function(data) {
             $('#gameUrl').val(data.url);
             $('#qrcode').html('');
-            $('#qrcode').qrcode({width: 300,height: 300,text: data.url});
+            $('#qrcode').qrcode({width: 300,height: 300,text: data.qr});
             $('#qrModal').modal('show');
         },
         error : function() {
