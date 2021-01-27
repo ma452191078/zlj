@@ -45,17 +45,20 @@
                             <th rowspan="2" class="text-center">序号</th>
                             <th rowspan="2" class="text-center">生产单位</th>
                             <th rowspan="2" class="text-center">生产工艺</th>
-                            <th rowspan="2" class="text-center">外观质量得分</th>
-                            <th rowspan="2" class="text-center">市场大比武得分（30%）</th>
-                            <th colspan="4" class="text-center">产品质量综合评比得分（50%）</th>
-                            <th rowspan="2" class="text-center">销售市场满意度测评得分（20%）</th>
-                            <th rowspan="2" class="text-center">总裁质量奖得分</th>
+                            <th colspan="3" class="text-center">样品得分</th>
+                            <th rowspan="2" class="text-center">市场大比 武得分</th>
+                            <th colspan="4" class="text-center">产品质量综合评比得分</th>
+                            <th rowspan="2" class="text-center">销售市场满意度测评得分</th>
+                            <th rowspan="2" class="text-center">总裁质量 奖得分</th>
                             <th rowspan="2" class="text-center">综合排名</th>
                         </tr>
                         <tr>
-                            <th class="text-center">养分稳定性考评得分</th>
+                            <th class="text-center">外观质 量得分</th>
+                            <th class="text-center">养分含 量扣分</th>
+                            <th class="text-center">合计</th>
+                            <th class="text-center">厂内产品质量监督考评得分</th>
                             <th class="text-center">市场产品监督考评得分</th>
-                            <th class="text-center">客户VOC综合考评得分</th>
+                            <th class="text-center">市场反馈产品质量问题考评得分</th>
                             <th class="text-center">得分</th>
                         </tr>
                     </thead>
@@ -72,6 +75,12 @@
                             </td>
                             <td>
                                 <span>{{detailInfo.score1.toFixed(2)}}</span>
+                            </td>
+                            <td>
+                                <span>{{detailInfo.score2.toFixed(2)}}</span>
+                            </td>
+                            <td>
+                                <span>{{detailInfo.scoreSum.toFixed(2)}}</span>
                             </td>
                             <td rowspan="2">
                                 <span>{{departmentInfo.score2.toFixed(2)}}</span>
@@ -104,6 +113,12 @@
                             </td>
                             <td>
                                 <span>{{detailInfo.score1.toFixed(2)}}</span>
+                            </td>
+                            <td>
+                                <span>{{detailInfo.score2.toFixed(2)}}</span>
+                            </td>
+                            <td>
+                                <span>{{detailInfo.scoreSum.toFixed(2)}}</span>
                             </td>
                         </tr>
                     </tbody>
